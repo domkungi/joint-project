@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInboundQuotationTable extends Migration
+class CreatePurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateInboundQuotationTable extends Migration
      */
     public function up()
     {
-        Schema::create('inbound_quotations', function (Blueprint $table) {
+        Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('request_for_quotation_id');
-            $table->foreign('request_for_quotation_id')->references('id')->on('request_for_quotations');
+            $table->unsignedBigInteger('inbound_quotation_id');
+            $table->foreign('inbound_quotation_id')->references('id')->on('inbound_quotations');
             $table->unsignedBigInteger('vendor_id');
             $table->foreign('vendor_id')->references('id')->on('vendors');
-            $table->decimal('subtotal', 13, 4);
-            $table->decimal('vat', 13, 4);
-            $table->decimal('total', 13, 4);
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->string('duedate');
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateInboundQuotationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inbound_quotation');
+        Schema::dropIfExists('purchase_order');
     }
 }

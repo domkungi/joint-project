@@ -39,7 +39,8 @@ class PurchaseRequisitionController extends Controller
         $items = collect(request('items'))->values();
 
         $pr = PurchaseRequisition::create([
-            'employee_id' =>  request('employee_id')
+            'employee_id' =>  request('employee_id'),
+            'duedate' =>  request('duedate')
         ]);
 
         for ($i = 0; $i < count($items); $i++) {
@@ -52,6 +53,6 @@ class PurchaseRequisitionController extends Controller
             }
         }
 
-        return redirect('/pr'.$pr->id);
+        return redirect('/pr/'.$pr->id);
     }
 }

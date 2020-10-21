@@ -50,13 +50,15 @@ class RequestForQuotationContrller extends Controller
         $rfq = RequestForQuotation::create([
             'purchase_requisition_id' =>  $pr->id,
             'vendor_id' => request('vendor_id'),
-            'employee_id' => request('employee_id')
+            'employee_id' => request('employee_id'),
+            'duedate' => request('duedate')
         ]);
+        
 
         foreach ($pr->items as $item) {
             $item->update(['request_for_quotation_id' => $rfq->id]);
         }
         
-        return redirect('/rfq');
+        return redirect('/rfq/'.$rfq->id);
     }
 }

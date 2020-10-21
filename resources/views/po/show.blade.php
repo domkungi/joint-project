@@ -124,17 +124,15 @@
                     <table>
                         <tr>
                             <td>
-                                <h1 class="text-4xl font-bold">{{$inquotation->vendor->name}}</h1>
+                                <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;"><br>
+                                <div class="hand"> Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345</div>
 
-                                <br>
-                                {{$inquotation->vendor->address}} {{$inquotation->vendor->city}}<br>
-                                {{$inquotation->vendor->zipcode}} {{$inquotation->vendor->country}}<br>
-                                Phone. {{$inquotation->vendor->phone}}<br>
-                                {{$inquotation->vendor->email}}
                             </td>
 
                             <td>
-                                <h1 class="text-2xl font-bold">Quotation</h1><br>RFQ NO. : RFQ#00{{$inquotation->request_for_quotation_id}}<br> Date: {{$inquotation->created_at}}
+                                <h1 class="text-2xl font-bold">Purchase Order</h1><br>Quotation NO. : IQ#00{{$po->inbound_quotation_id}}<br> Date: {{$po->created_at}} <br>
+                                Purchase Order Valid Until : {{$po->duedate}}
+
 
                             </td>
                         </tr>
@@ -142,19 +140,31 @@
                 </td>
             </tr>
 
-            <tr class="information">
+            <tr class="">
                 <td colspan="2">
                     <table>
                         <tr>
                             <td>
 
-                                <h1 class="font-black">Quotation For :</h1>
-                                <div class="hand"> Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345</div>
+                                <h1 class="font-black">Bill To :</h1>
+                                <br>
+                                {{$po->vendor->name}} <br>
+                                {{$po->vendor->address}} ,{{$po->vendor->city}},{{$po->vendor->country}}<br>
+                                {{$po->vendor->zipcode}} <br>
+                                Phone. {{$po->vendor->phone}}<br>
+                                {{$po->vendor->email}}
+                            </td>
+                            <td>
+
+                                <h1 class="font-black">Ship To :</h1>
+                                <br>
+                                {{$po->vendor->name}} <br>
+                                {{$po->vendor->address}} ,{{$po->vendor->city}},{{$po->vendor->country}}<br>
+                                {{$po->vendor->zipcode}} <br>
+                                Phone. {{$po->vendor->phone}}<br>
+                                {{$po->vendor->email}}
                             </td>
 
-                            <td>
-                                Quotation Valid Until : {{$inquotation->duedate}}
-                            </td>
                         </tr>
                     </table>
                 </td>
@@ -189,10 +199,10 @@
 
             <tr class="item">
                 <td>
-                    {{$inquotation->vendor->name}}-Sale
+                    {{$po->employee->name}}
                 </td>
                 <td>
-                    -
+                    PO#00{{$po->id}}
                 </td>
                 <td>
                     {{date("Y/m/d") }}
@@ -230,7 +240,7 @@
                     </td>
 
                 </tr>
-                @foreach($inquotation->products as $product)
+                @foreach($po->inboundQuotation->products as $product)
                 <tr class="item">
                     <td>
                         {{$product->name}}
@@ -268,25 +278,16 @@
                         SUBTOTAL<br>VAT<br>TOTAL
                     </td>
                     <td>
-                        ${{number_format($inquotation->subtotal,2)}}<br>${{number_format($inquotation->vat,2)}}<br> ${{number_format($inquotation->total,2)}}
+                        ${{number_format($po->inboundQuotation->subtotal,2)}}<br>${{number_format($po->inboundQuotation->vat,2)}}<br> ${{number_format($po->inboundQuotation->total,2)}}
                     </td>
                 </tr>
 
 
 
-                <tr class="Thank">
-                    <td>
-                        If you have any questions concerning this quotation contact Name, Phone Number, Email<br>
-                        <div class="center">
-                            <h3>THANK YOU FOR YOUR BUSINESS!!</h3>
-                        </div>
-                    </td>
-
-                </tr>
 
                 <tr>
                     <td>
-                        <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/po/create/{{$inquotation->id}}">Create Purchase Order </a></h3>
+                        <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/gr/create/{{$po->id}}">Good receipt </a></h3>
                 </tr>
         </table>
     </div>

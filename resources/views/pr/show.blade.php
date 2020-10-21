@@ -1,6 +1,15 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
 
-@push('styles')
+
+
 <style>
          html{
             background-color: #ddd;
@@ -100,9 +109,10 @@
             text-align: left;
         }
     </style>
-@endpush
+</head>
 
-@section('content')
+<body>
+
 <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
@@ -115,7 +125,7 @@
                             </td>
 
                             <td>
-                                <h2>Purchase Requisition</h2>PR No | PR#00{{$pr->id}}<br> Created: {{$pr->created_at}}<br> 
+                                <h2 class="text-2xl font-bold">Purchase Requisition</h2>PR No | PR#00{{$pr->id}}<br> Created: {{$pr->created_at}}<br> Duedate: {{$pr->duedate}}
                             </td>
                         </tr>
                     </table>
@@ -184,9 +194,11 @@
                             <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/rfq/create/{{$pr->id}}">Create Request For Quotation</a> </h3>
                             </td>
                         </tr>
+                        
         </table>
     </div>
    
-@endsection
 
-
+    
+    </body>
+</html>

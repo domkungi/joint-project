@@ -27,5 +27,12 @@ class EmployeeTableSeeder extends Seeder
             'phone' => '0912354566',
             'email' => 'Vasupon@gmail.com',
         ]);
+
+        Employee::create([
+            'name' => 'Badin',
+            'address' => 'Si Phum,Muang,Chiangmai',
+            'phone' => '0902315455',
+            'email' => 'badin@gmail.com',
+        ]);
     }
 }

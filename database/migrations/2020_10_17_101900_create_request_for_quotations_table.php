@@ -21,7 +21,7 @@ class CreateRequestforquotationsTable extends Migration
             $table->foreign('vendor_id')->references('id')->on('vendors');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees');
-            
+            $table->string('duedate');
             $table->timestamps();
         });
     }

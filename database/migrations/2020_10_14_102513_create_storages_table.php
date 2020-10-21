@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePurchaseRequisitionsTable extends Migration
+class CreateStoragesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePurchaseRequisitionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_requisitions', function (Blueprint $table) {
+        Schema::create('storages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
-            $table->string('duedate');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->string('country');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePurchaseRequisitionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_requisitions');
+        Schema::dropIfExists('storages');
     }
 }

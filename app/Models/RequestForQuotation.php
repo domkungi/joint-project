@@ -31,4 +31,9 @@ class RequestForQuotation extends Model
     {
         return $this->belongsToMany(Product::class, 'items')->withPivot('qty');
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

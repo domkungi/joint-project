@@ -21,10 +21,13 @@ class CreateItemsTable extends Migration
             $table->foreign('request_for_quotation_id')->references('id')->on('request_for_quotations');
             $table->unsignedBigInteger('inbound_quotation_id')->nullable();
             $table->foreign('inbound_quotation_id')->references('id')->on('inbound_quotations');
+            $table->unsignedBigInteger('purchase_order_id')->nullable();
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('qty')->nullable();
             $table->decimal('price')->nullable();
+            $table->decimal('totalprice')->nullable();
             $table->timestamps();
         });
     }

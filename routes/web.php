@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\GoodsReceiptController;
 use App\Http\Controllers\InboundQuotationController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRequisitionController;
 use App\Http\Controllers\RequestForQuotationContrller;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\StorageController;
 use App\Http\Controllers\VendorController;
 use App\Http\Livewire\CreateInboundQuotation;
 use Illuminate\Support\Facades\Route;
@@ -57,8 +61,27 @@ Route::post('/rfq/store/{pr}', [RequestForQuotationContrller::class, 'store']);
 // Route::get('/inquotation/create/{rfq}', CreateInboundQuotation::class);
 
 Route::get('/inquotation/create/{rfq}', [InboundQuotationController::class,'create']);
+Route::get('/inquotation/{inquotation}', [InboundQuotationController::class,'show']);
 Route::get('/inquotation', [InboundQuotationController::class, 'index']);
 Route::post('/inquotation/store/{rfq}', [InboundQuotationController::class, 'store']);
+
+Route::get('/po/create/{inquotation}', [PurchaseOrderController::class, 'create']);
+Route::get('/po/{po}', [PurchaseOrderController::class,'show']);
+Route::get('/po', [PurchaseOrderController::class, 'index']);
+Route::post('/po/store/{inquotation}', [PurchaseOrderController::class, 'store']);
+
+Route::get('/gr/create/{po}', [GoodsReceiptController::class, 'create']);
+Route::get('/gr/check/{po}', [GoodsReceiptController::class, 'check']);
+Route::get('/gr', [GoodsReceiptController::class, 'index']);
+Route::get('/gr/{gr}', [GoodsReceiptController::class, 'show']);
+Route::post('/gr/store/{po}', [GoodsReceiptController::class, 'store']);
+
+Route::get('/storage', [StorageController::class, 'index']);
+
+Route::get('/stock/{storage}', [StockController::class, 'index']);
+
+
+
 
 
 Route::get('/materialmain', [MaterialController::class, 'materialmain']);

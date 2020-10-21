@@ -100,114 +100,129 @@
     .rtl table tr td:nth-child(2) {
         text-align: left;
     }
+
+    h1 {
+        font-size: 50px;
+    }
 </style>
 @endpush
 
 @section('content')
-
-<div class="invoice-box">
-    <p x-text="isOpen"></p>
-    <table cellpadding="0" cellspacing="0">
-        <tr class="top">
-            <td colspan="2">
-                <table>
-                    <tr>
-                        <td class=" ">
-                            <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Create Quotation</h1>
-                        </td>
-
-                        <td class=" font-serif">
-                            RFQ No | <input class="border-2 bg-gray-200 " type="text" value="RFQ#00{{$rfq->id}}"><br>
-                            Vendor No | <input class="border-2 bg-gray-200" type="text" value="VD#00{{$rfq->vendor->id}}"> <br>
-                            Created At |<div id="txt"></div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <table class=" font-serif">
-            <tr>
-
-                <td>
-                    {{$rfq->vendor->name}}<br> {{$rfq->vendor->address}} , {{$rfq->vendor->city}} , {{$rfq->vendor->country}}<br> {{$rfq->vendor->zipcode}}
-                </td>
+<form action="/inquotation/store/{{$rfq->id}}" method="post">
+                @csrf
+<body onload=startTime()>
 
 
-            </tr>
-            <tr>
-                <td>Bill To :</td>
-                <td>Ship To :</td>
-            </tr>
-            <tr>
-                <td>
-                    Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345
-                </td>
-                <td>
-                    Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345
+    <div class="invoice-box">
+
+        <p x-text="isOpen"></p>
+
+        <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Create Quotation</h1>
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+
+                            </td>
+
+
+
+                            <td class=" font-serif">
+                                RFQ No | <input class="border-2 bg-gray-200 " type="text" value="RFQ#00{{$rfq->id}}"><br>
+                                Vendor No | <input class="border-2 bg-gray-200" type="text" value="VD#00{{$rfq->vendor->id}}"> <br>
+                                Due Date |<input class="border-2 bg-gray-200" type="text" name='duedate'> <br>
+                                Created At |<div id="txt"></div>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
+
+            <table class=" font-serif">
+                <tr>
+
+                    <td>
+                        {{$rfq->vendor->name}}<br> {{$rfq->vendor->address}} , {{$rfq->vendor->city}} , {{$rfq->vendor->country}}<br> {{$rfq->vendor->zipcode}}
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td>Bill To :</td>
+                    <td>Ship To :</td>
+                </tr>
+                <tr>
+                    <td>
+                        Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345
+                    </td>
+                    <td>
+                        Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345
+                    </td>
+                </tr>
+            </table>
+
+            <tr class="para">
+                <td colspan="2">
+
+                </td>
+
+            </tr>
+
+
         </table>
 
-        <tr class="para">
-            <td colspan="2">
-
-            </td>
-
-        </tr>
-
-
-    </table>
-
-    <table>
-        <tr class="tagheading">
-
-
-            <td>
-                Product Name
-            </td>
-            <td>
-                Color
-            </td>
-            <td>
-                QTY
-            </td>
-            <td>
-                Unit Price
-            </td>
-            <td>
-                Amount
-            </td>
-
-        </tr>
-        <form action="/inquotation/store/{{$rfq->id}}" method="post">
-            @csrf
-            @foreach($rfq->products as $product)
-            <tr class="item">
-
-                <td>{{$product->name}}</td>
-                <td>{{$product->color}}</td>
-                <td>{{$product->pivot->qty}}</td>
-                <td><input class="border-2 bg-gray-200 " type="text" name="price[]"></td>
-                <td><input class="border-2 bg-gray-200 " type="text" name="price[]"></td>
-
-
-            </tr>
-            @endforeach
-
+        <table>
             <tr class="tagheading">
+
+
                 <td>
-                    Vat
+                    Product Name
                 </td>
-                <td><input class="border-2 bg-gray-200 " type="text" name="vat"></td>
+                <td>
+                    Color
+                </td>
+                <td>
+                    QTY
+                </td>
+                <td>
+                    Unit Price
+                </td>
+                <td>
+                    Currency
+                </td>
+
             </tr>
+            
+                @foreach($rfq->products as $product)
+                <tr class="item">
+
+                    <td>{{$product->name}}</td>
+                    <td>{{$product->color}}</td>
+                    <td>{{$product->pivot->qty}}</td>
+                    <td><input class="border-2 bg-gray-200 " type="text" name="price[]"></td>
+                    <td>USD</td>
+
+
+                </tr>
+                @endforeach
+
+                <tr class="tagheading">
+                    <td>
+                        Vat
+                    </td>
+                    <td><input class="border-2 bg-gray-200 " type="text" name="vat"></td>
+                    <td>Percent (%)</td>
+                </tr>
+
+
+
+        </table>
+        <h3 class="py-5"><input type="submit" value="Create Quotation " class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white"></h3>
         </form>
-
-
-    </table>
-    <h3 class="py-5"><input type="submit" value="Create Quotation " class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white"></h3>
-</div>
-
+    </div>
+</body>
 @endsection
 
 

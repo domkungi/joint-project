@@ -115,8 +115,9 @@
 </head>
 
 
-
-<body>
+<form action="/po/store/{{$inquotation->id}}" method="post">
+                @csrf
+<body onload=startTime()>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
@@ -124,51 +125,34 @@
                     <table>
                         <tr>
                             <td>
-                                <h1 class="text-4xl font-bold">{{$inquotation->vendor->name}}</h1>
-
-                                <br>
-                                {{$inquotation->vendor->address}} {{$inquotation->vendor->city}}<br>
-                                {{$inquotation->vendor->zipcode}} {{$inquotation->vendor->country}}<br>
-                                Phone. {{$inquotation->vendor->phone}}<br>
-                                {{$inquotation->vendor->email}}
-                            </td>
-
-                            <td>
-                                <h1 class="text-2xl font-bold">Quotation</h1><br>RFQ NO. : RFQ#00{{$inquotation->request_for_quotation_id}}<br> Date: {{$inquotation->created_at}}
+                                <h1 class="text-4xl font-bold">Create Purchase Order</h1>
 
                             </td>
                         </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr class="information">
-                <td colspan="2">
-                    <table>
+                      
                         <tr>
                             <td>
-
-                                <h1 class="font-black">Quotation For :</h1>
-                                <div class="hand"> Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345</div>
-                            </td>
-
-                            <td>
-                                Quotation Valid Until : {{$inquotation->duedate}}
+                                <br>
+                                Quotation No. | <input class="border-2 bg-gray-200 " type="text"  value='IQ#00{{$inquotation->id}}'><br>
+                                Duedate Date | <input class="border-2 bg-gray-200 " type="text" name="duedate" value='{{date("Y/m/d")}}'> <br> 
                             </td>
                         </tr>
+                        <tr>
+                             <td>
+                                 Vendor | <input class="border-2 bg-gray-200 " type="text" value='{{$inquotation->vendor->name}}'> <br>
+                                Ship To | <input class="border-2 bg-gray-200 " type="text"  value='{{$inquotation->vendor->address}}'>
+                            </td>
+                        </tr>
+                           
+                    
+
                     </table>
                 </td>
             </tr>
-
-
-
-
-
-        </table>
-        <table>
+            <table>
             <tr class="tagheading">
                 <td>
-                    Saleperson
+                    Employee
                 </td>
 
                 <td>
@@ -189,10 +173,14 @@
 
             <tr class="item">
                 <td>
-                    {{$inquotation->vendor->name}}-Sale
+                    <select name="employee_id" class="border-2 bg-gray-200 " >
+                        @foreach($employees as $employee)
+                        <option value="{{$employee->id}}">{{$employee->name}}</option>
+                        @endforeach
+                    </select>
                 </td>
                 <td>
-                    -
+                    AUTO
                 </td>
                 <td>
                     {{date("Y/m/d") }}
@@ -209,6 +197,10 @@
 
 
         </table>
+            
+
+
+      
         <table>
             <div class="group">
                 <tr class="tagheading">
@@ -274,19 +266,9 @@
 
 
 
-                <tr class="Thank">
-                    <td>
-                        If you have any questions concerning this quotation contact Name, Phone Number, Email<br>
-                        <div class="center">
-                            <h3>THANK YOU FOR YOUR BUSINESS!!</h3>
-                        </div>
-                    </td>
-
-                </tr>
-
                 <tr>
                     <td>
-                        <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/po/create/{{$inquotation->id}}">Create Purchase Order </a></h3>
+                        <h3 class="py-5"><input type="submit"  class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" ></h3>
                 </tr>
         </table>
     </div>
@@ -294,5 +276,42 @@
 
     </div>
 </body>
-
+</form>
 </html>
+
+@push('scripts')
+<script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        }; // add zero in front of numbers < 10
+        return i;
+
+        function addCommas(nStr) //ฟังชั่้นเพิ่ม คอมม่าในการแสดงเลข
+        {
+            nStr += '';
+            x = nStr.split('.');
+            show = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                show = show.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+    }
+</script>
+@endpush
