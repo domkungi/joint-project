@@ -136,7 +136,7 @@
                                 </td>
 
                                 <td class=" font-serif">
-                                    Due Date | <input class="border-2 bg-gray-200 " type="text" name="duedate"><br>
+                                    Due Date | <input class="border-2 bg-gray-200 " type="text" name="duedate" value='{{date("Y/m/d")}}'><br>
                                     Created At |<div id="txt"></div>
                                 </td>
                             </tr>

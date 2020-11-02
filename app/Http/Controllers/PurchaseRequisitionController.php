@@ -37,7 +37,7 @@ class PurchaseRequisitionController extends Controller
     public function store()
     {
         $items = collect(request('items'))->values();
-
+        
         $pr = PurchaseRequisition::create([
             'employee_id' =>  request('employee_id'),
             'duedate' =>  request('duedate')

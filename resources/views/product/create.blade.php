@@ -15,6 +15,10 @@
                 <td>Color</td>
                 <td><input type="text" name="color"></td>
             </tr>
+            <tr>
+                <td>Sale_Price</td>
+                <td><input type="text" name="sale_price"></td>
+            </tr>
         </table>
         <div class="py-5">
           <input class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg" type="submit" value="Create">  

@@ -1,3 +1,7 @@
+@extends('layouts.app3')
+
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,8 +124,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png"
-                                    style="width:100%; max-width:300px;">
+                            <img src="{{ URL::to('/assets/img/logo.jpg') }}" style="width:100%; max-width:300px;">
                             </td>
 
                             <td>
@@ -202,3 +205,4 @@
     
     </body>
 </html>
+@endsection

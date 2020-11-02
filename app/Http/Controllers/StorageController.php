@@ -14,4 +14,19 @@ class StorageController extends Controller
         return view('storage.index', [ 'storages' => $storages
         ]);
     }
+
+    public function create()
+    {
+        return view('storage.create');
+    }
+
+    public function store()
+    {
+        Storage::create([
+            'company_id' => request('company_id'),
+            'country' => request('country'),
+        ]);
+
+        return redirect('/index');
+    }
 }

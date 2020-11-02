@@ -19,9 +19,9 @@ class CreateInboundQuotationTable extends Migration
             $table->foreign('request_for_quotation_id')->references('id')->on('request_for_quotations');
             $table->unsignedBigInteger('vendor_id');
             $table->foreign('vendor_id')->references('id')->on('vendors');
-            $table->decimal('subtotal', 13, 4);
-            $table->decimal('vat', 13, 4);
-            $table->decimal('total', 13, 4);
+            $table->decimal('subtotal', 13, 2);
+            $table->decimal('vat', 13, 2);
+            $table->decimal('total', 13, 2);
             $table->string('duedate');
             $table->timestamps();
         });

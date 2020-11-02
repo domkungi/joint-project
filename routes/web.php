@@ -1,18 +1,26 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GoodsReceiptController;
 use App\Http\Controllers\InboundQuotationController;
+use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\PickingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRequisitionController;
+use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RequestForQuotationContrller;
+use App\Http\Controllers\SaleOrderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\VendorController;
 use App\Http\Livewire\CreateInboundQuotation;
+use App\Models\SaleOrder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,12 +84,42 @@ Route::get('/gr', [GoodsReceiptController::class, 'index']);
 Route::get('/gr/{gr}', [GoodsReceiptController::class, 'show']);
 Route::post('/gr/store/{po}', [GoodsReceiptController::class, 'store']);
 
+Route::get('/storage/create', [StorageController::class, 'create']);
 Route::get('/storage', [StorageController::class, 'index']);
+Route::post('/storage/store', [StorageController::class, 'store']);
 
 Route::get('/stock/{storage}', [StockController::class, 'index']);
+Route::get('/issuegoods', [StockController::class, 'issuegoods']);
+Route::get('/stock/show/{storage}', [StockController::class, 'show']);
+
+Route::get('/customer/create', [CustomerController::class, 'create']);
+Route::get('/customer', [CustomerController::class, 'index']);
+Route::post('/customer/store', [CustomerController::class, 'store']);
+
+Route::get('/inquiry/create', [InquiryController::class, 'create']);
+Route::get('/inquiry', [InquiryController::class, 'index']);
+Route::get('/inquiry/{inquiry}', [InquiryController::class, 'show']);
+Route::post('/inquiry/store', [InquiryController::class, 'store']);
+
+Route::get('/quotation/create/{inquiry}', [QuotationController::class, 'create']);
+Route::get('/quotation', [QuotationController::class, 'index']);
+Route::get('/quotation/{quotation}', [QuotationController::class, 'show']);
+Route::post('/quotation/store/{inquiry}', [QuotationController::class, 'store']);
+
+Route::get('/saleorder/create/{quotation}',[SaleOrderController::class, 'create']);
+Route::get('/saleorder',[SaleOrderController::class, 'index']);
+Route::get('/saleorder/{saleorder}',[SaleOrderController::class, 'show']);
+Route::post('/saleorder/store/{quotation}',[SaleOrderController::class, 'store']);
+
+Route::get('/picking/create/{saleorder}',[PickingController::class, 'create']);
+Route::get('/picking',[PickingController::class, 'index']);
+Route::get('/picking/{picking}',[PickingController::class, 'show']);
+Route::post('/picking/store/{saleorder}',[PickingController::class, 'store']);
+
+Route::get('/invoice/create/{saleorder}',[InvoiceController::class, 'create']);
+Route::get('/invoice',[InvoiceController::class, 'index']);
+Route::get('/invoice/{invoice}',[InvoiceController::class, 'show']);
+Route::post('/invoice/store/{saleorder}',[InvoiceController::class, 'store']);
 
 
-
-
-
-Route::get('/materialmain', [MaterialController::class, 'materialmain']);
+Route::get('/summary', [CompanyController::class, 'index']);

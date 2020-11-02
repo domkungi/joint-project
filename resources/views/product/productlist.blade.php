@@ -10,7 +10,7 @@
         <tr>
           <th>Product Name</th>
           <th>Color</th>
-          <th>Created</th>
+          <th>Sale Price</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +18,7 @@
         <tr>
           <td>{{$product->name}}</td>
           <td>{{$product->color}}</td>
-          <td>{{$product->created_at}}</td>
+          <td>${{number_format($product->sale_price,2)}}</td>
         </tr>
         @endforeach
       </tbody>

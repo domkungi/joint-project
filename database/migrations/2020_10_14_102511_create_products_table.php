@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('color');
+            $table->decimal('sale_price', 13, 2)->nullable();
+            $table->decimal('total_sale', 13, 2)->default(0);
             $table->timestamps();
         });
     }

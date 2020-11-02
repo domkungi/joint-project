@@ -132,7 +132,7 @@
                             <td class=" font-serif">
                                 RFQ No | <input class="border-2 bg-gray-200 " type="text" value="RFQ#00{{$rfq->id}}"><br>
                                 Vendor No | <input class="border-2 bg-gray-200" type="text" value="VD#00{{$rfq->vendor->id}}"> <br>
-                                Due Date |<input class="border-2 bg-gray-200" type="text" name='duedate'> <br>
+                                Due Date |<input class="border-2 bg-gray-200" type="text" name='duedate' value='{{date("Y/m/d")}}'> <br>
                                 Created At |<div id="txt"></div>
                             </td>
                         </tr>

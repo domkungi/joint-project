@@ -16,17 +16,18 @@
                 <th>Inbound QTY</th>
                 <th>Outbound QTY</th>
                 <th>Date</th>
-
+                
             </tr>
         </thead>
         <tbody>
             @foreach($stocks as $stock)
             <tr>
                 <td>S00{{$stock->id}}</td>
-                <td>GR#00{{$storage->goods_receipt_id}}</td>
-                <td>{{$stock->goodReceipt->purchaseOrder}}</td>
-                
-                <td> <a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/stock">view</a></td>
+                <td>GR#00{{$stock->goods_receipt_id}}</td>
+                <td>{{$stock->product->name}}</td>
+                <td>{{$stock->inbound_qty}}</td>
+                <td>{{$stock->outbound_qty}}</td>
+                <td> {{$stock->created_at}}</td>
             </tr>
             @endforeach
         </tbody>

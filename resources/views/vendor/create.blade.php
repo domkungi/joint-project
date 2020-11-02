@@ -16,7 +16,7 @@
                 <td><input type="text" name="address"></td>
             </tr>
             <tr>
-                <td>Contry</td>
+                <td>Country</td>
                 <td><input type="text" name="country"></td>
             </tr>
             <tr>

@@ -1,3 +1,7 @@
+@extends('layouts.app3')
+
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +13,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
     <style>
+        img{
+            padding-left: 10px ;
+        }
         html {
             background-color: #ddd;
         }
@@ -124,7 +131,7 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;"><br>
+                            <img src="{{ URL::to('/assets/img/logo.jpg') }}" style="width:100%; max-width:300px;">
                                 <div class="hand"> Handsome, Inc.<br> 12345 Sunny Road<br> Sunnyville, CA 12345</div>
 
                             </td>
@@ -297,3 +304,4 @@
 </body>
 
 </html>
+@endsection

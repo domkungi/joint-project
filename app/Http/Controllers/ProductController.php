@@ -23,6 +23,7 @@ class ProductController extends Controller
         Product::create([
             'name' =>  request('name'),
             'color' => request('color'),
+            'sale_price' => request('sale_price')
             
         ]);
 

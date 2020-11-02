@@ -23,11 +23,13 @@ class CreateItemsTable extends Migration
             $table->foreign('inbound_quotation_id')->references('id')->on('inbound_quotations');
             $table->unsignedBigInteger('purchase_order_id')->nullable();
             $table->foreign('purchase_order_id')->references('id')->on('purchase_orders');
+            $table->unsignedBigInteger('goods_receipt_id')->nullable();
+            $table->foreign('goods_receipt_id')->references('id')->on('goods_receipts');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('qty')->nullable();
-            $table->decimal('price')->nullable();
-            $table->decimal('totalprice')->nullable();
+            $table->decimal('price',13,2)->nullable();
+            $table->decimal('totalprice',13,2)->nullable();
             $table->timestamps();
         });
     }

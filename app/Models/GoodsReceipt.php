@@ -30,4 +30,14 @@ class GoodsReceipt extends Model
         return $this->hasMany(Stock::class);
     }
 
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class ,'items')->withPivot('qty');
+    }
+
 }

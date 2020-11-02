@@ -38,7 +38,7 @@ class VendorTableSeeder extends Seeder
         Vendor::create([
             'name' =>  'Mazda Motor Corporation',
             'address' => 'Kurokawa District',
-            'country' => 'Thailand',
+            'country' => 'Japan',
             'city' => 'Miyaki',
             'zipcode' => '111222',
             'email' => 'mazdamotor@hotmail.co.th',
@@ -49,7 +49,7 @@ class VendorTableSeeder extends Seeder
         Vendor::create([
             'name' =>  'Nissan Motor',
             'address' => 'Kurokawa District',
-            'country' => 'Thailand',
+            'country' => 'Japan',
             'city' => 'Miyaki',
             'zipcode' => '111222',
             'email' => 'nissanmotor@hotmail.co.th',

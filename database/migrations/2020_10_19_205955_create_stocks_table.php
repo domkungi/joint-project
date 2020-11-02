@@ -17,15 +17,11 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->unsignedBigInteger('storage_id');
             $table->foreign('storage_id')->references('id')->on('storages');
-            $table->unsignedBigInteger('goods_receipt_id')->nullable();
-            $table->foreign('goods_receipt_id')->references('id')->on('goods_receipts');
-            /*$table->unsignedBigInteger('goods_issue_id')->nullable();
-            $table->foreign('goods_issue_id')->references('id')->on('goods_issues');*/
-            
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('inbound_qty')->nullable();
-            $table->integer('outbound_qty')->nullable();
+            $table->integer('inbound_qty')->default(0);
+            $table->integer('outbound_qty')->default(0);
+            $table->integer('current_qty')->default(0);
             $table->timestamps();
         });
     }

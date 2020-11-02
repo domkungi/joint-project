@@ -15,10 +15,7 @@ class Stock extends Model
         return $this->belongsTo(Storage::class);
     }
 
-    public function goodReceipt()
-    {
-        return $this->belongsTo(GoodsReceipt::class);
-    }
+   
 
 
     public function product()

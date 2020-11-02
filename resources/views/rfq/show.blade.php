@@ -1,3 +1,7 @@
+@extends('layouts.app3')
+
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,8 +124,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png"
-                                    style="width:100%; max-width:300px;">
+                            <img src="{{ URL::to('/assets/img/logo.jpg') }}" style="width:100%; max-width:300px;">
                             </td>
 
                             <td>
@@ -161,14 +164,13 @@
                 <td colspan="2">
                     <table>
                         <td>
-                            Dear Sir / {{$rfq->vendor->name}}  <br>
-                            <pre>   I would like to request a quote for your product. I have seen that your company
-  sells several different models, I feel the __________ would be the most appropriate.
-  I would also know how long it would take to ship the _______ to [place where you live].
-                                
-  Sincerely,
+                        <h4 class="font-bold">To Whom It May Concern:</h4>
+                            <pre>
+                I am {{$rfq->employee->name}}, and I am a purchasing agent for Handsome Company
+         in Chiangmai, Thailand I was looking through your website, and I would like to receive a 
+         quote for the following products :
+  </pre>
 
-  {{$rfq->employee->name}} | Handsome, Inc.
   
                         </td>
 
@@ -179,35 +181,7 @@
 
             </tr>
 
-            <!-- <tr class="heading">
-                <td>
-                    Payment Method
-                </td>
-
-                <td>
-                    Check #
-                </td>
-            </tr> -->
-
-            <!-- <tr class="details">
-                <td>
-                    Check
-                </td>
-
-                <td>
-                    1000
-                </td>
-            </tr> -->
-
-        
-
-            <!-- <tr class="total">
-                <td></td>
-
-                <td>
-                    Total: $385.00
-                </td>
-            </tr> -->
+           
         </table>
 
         <table>
@@ -238,6 +212,11 @@
                             <td>{{$product->pivot->qty}}</td>
                         </tr>
                         @endforeach
+                        <tr>
+                            <td>
+                           <pre> {{$rfq->employee->name}} | Handsome, Inc. </pre>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td>
@@ -248,3 +227,5 @@
     </div>
     </body>
     </html>
+
+    @endsection

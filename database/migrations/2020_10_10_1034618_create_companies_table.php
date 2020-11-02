@@ -22,6 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->string('zipcode');
             $table->string('email');
             $table->string('phone');
+            $table->decimal('total_sale', 13, 2)->default(0);
             $table->timestamps();
         });
     }

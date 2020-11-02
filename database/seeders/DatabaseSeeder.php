@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             ProductsTableSeeder::class,
             EmployeeTableSeeder::class,
             CompaniesTableSeeder::class,
-            StoragesTableSeeder::class
+            StoragesTableSeeder::class,
+            CustomersTableSeeder::class
         ]);
     }
 }

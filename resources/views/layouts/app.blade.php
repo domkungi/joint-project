@@ -18,8 +18,8 @@
 
         <div class="nav">
             <ul>
-
-                <li class="home"><a class="active" href="index">Home</a></li>
+          
+                <li class="home"><a class="active" href="/index">Home</a></li>
                 <li class="puchase-requisition"><a href="/pr">PR</a>
                     <ul>
                         <li>Puchase Requisition</li>
@@ -40,9 +40,9 @@
                     </ul>
                 </li>
                 <li class="gd"><a href="/gr">Goods Receipt</a></li>
-                <li class="product"><a href="productlist">Product</a></li>
-                <li class="vendor"><a href="vendor">Vendor</a></li>
-                <li class="employee"><a href="employeelist">Employee</a></li>
+                <li class="product"><a href="/productlist">Product</a></li>
+                <li class="vendor"><a href="/vendor">Vendor</a></li>
+                <li class="employee"><a href="/employeelist">Employee</a></li>
                 <li class="inventory"><a href="/storage">Inventory</a></li>
             </ul>
 

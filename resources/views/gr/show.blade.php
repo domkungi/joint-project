@@ -1,3 +1,7 @@
+@extends('layouts.app3')
+
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,7 +127,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
+                            <img src="{{ URL::to('/assets/img/logo.jpg') }}" style="width:100%; max-width:300px;">
                             </td>
 
                             <td>
@@ -166,9 +170,9 @@
 
                     </table>
                 </td>
-            </tr>
+            </tr> 
 
-            <tr class="heading">
+             <tr class="heading">
                 <td>
                     Currency | USD <br> Storage in {{$gr->storage->country}}
                 </td>
@@ -178,10 +182,10 @@
                 </td>
             </tr>
 
-          
 
 
-           
+
+
 
 
             <table>
@@ -208,15 +212,10 @@
                     <td>
                         Total Value
                     </td>
-                    <td>
-                        Balance.
-                    </td>
+
                 </tr>
-                <p hidden>{{$total = 0}}</p> 
-                <p hidden>{{$totalbalance = 0}}</p> 
-                @foreach($gr->stocks as $stock)
-                <p hidden>{{$stock_qty=$stock->inbound_qty}}</p> 
-                @endforeach
+               
+               
                 @foreach($gr->purchaseOrder->inboundQuotation->products as $product)
 
                 <tr class="item">
@@ -226,27 +225,26 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->color}}</td>
                     <td>{{$product->pivot->qty}}</td>
-                    <td>{{$stock_qty}}</td>
+                    <td>{{$product->pivot->qty}}</td>
                     <td>{{number_format($product->pivot->price,2)}}</td>
-                    <p hidden>{{$totalprice = $stock_qty*$product->pivot->price}}</p> 
-                    <p hidden>{{$balance = ($product->pivot->qty)*($product->pivot->price)-$totalprice }}</p> 
-                    <td>{{number_format($totalprice,2)}}</td>
-                    <td>{{number_format($balance,2)}}</td>
-                    <p hidden>{{$total = $total+$totalprice  }}</p> 
-                    <p hidden>{{$totalbalance += $balance  }}</p> 
+                    <td>{{number_format($product->pivot->price*$product->pivot->qty,2)}}</td>
+                    
+
                 </tr>
 
                 @endforeach
 
-            
-            </table>
-            <tr>
-                            <td>
-                            <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/gr">Go back</a> </h3>
-                            </td>
-                        </tr>
-            
+
+            </table> 
+             <tr>
+                <td>
+                    <h3 class="py-5"><a class="bg-gray-700 py-1 px-4 rounded-sm text-white text-lg bg-opacity-50 hover:bg-red-800 focus:bg-white" href="/gr">Go back</a> </h3>
+                </td>
+            </tr>
+
     </div>
 </body>
 
 </html>
+
+@endsection
